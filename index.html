@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacidad · Axioma Trivia</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d14;
+    --bg2: #13131f;
+    --bg3: #1a1a2e;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.12);
+    --gold: #c9a84c;
+    --gold2: #f0c96a;
+    --purple: #7b6ef6;
+    --purple2: #a395f8;
+    --text: #e8e8f0;
+    --muted: #888899;
+    --radius: 16px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  nav {
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .wordmark {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .badge {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  hero {
+    display: block;
+    padding: 80px 40px 60px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  h1 strong {
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .lead {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0;
+  }
+
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: var(--border2); }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  .dot.gold { background: var(--gold); }
+
+  ul.clean {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  ul.clean li {
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  .pill {
+    display: inline-block;
+    background: rgba(123, 110, 246, 0.12);
+    border: 1px solid rgba(123, 110, 246, 0.25);
+    color: var(--purple2);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin: 3px 4px 3px 0;
+    letter-spacing: 0.5px;
+  }
+
+  .pill.gold {
+    background: rgba(201, 168, 76, 0.1);
+    border-color: rgba(201, 168, 76, 0.25);
+    color: var(--gold2);
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    flex-wrap: wrap;
+  }
+
+  .contact-info { flex: 1; min-width: 200px; }
+  .contact-name { font-size: 14px; color: #fff; font-weight: 500; margin-bottom: 2px; }
+  .contact-email { font-size: 13px; color: var(--purple2); }
+
+  .tag-updated {
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  footer strong { color: var(--gold); font-weight: 600; }
+
+  a { color: var(--purple2); text-decoration: none; }
+  a:hover { color: var(--gold2); }
+
+  @media (max-width: 600px) {
+    nav, hero, main, footer { padding-left: 20px; padding-right: 20px; }
+    hero { padding-top: 48px; padding-bottom: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wordmark">Axioma</div>
+  <div class="badge">TRIVIA · PRIVACIDAD</div>
+</nav>
+
+<hero>
+  <div class="eyebrow">Política de privacidad</div>
+  <h1>Tu datos,<br><strong>bajo control.</strong></h1>
+  <p class="lead">Explicamos de forma clara qué información recopilamos, por qué la necesitamos y cómo la protegemos.</p>
+</hero>
+
+<main>
+
+  <div class="section">
+    <div class="section-label">01 · Qué recopilamos</div>
+    <h2>Información mínima y necesaria</h2>
+    <p>No pedimos nombre, correo ni número de teléfono. Solo lo esencial para que el juego funcione.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title">ID anónimo</div>
+        <p class="card-desc">Firebase crea un identificador único sin datos personales para guardar tu progreso.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Progreso de juego</div>
+        <p class="card-desc">Puntuación, nivel, gemas y racha diaria almacenados en Firebase Firestore.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Rendimiento</div>
+        <p class="card-desc">Registros de fallos y métricas de uso para mejorar la experiencia.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Publicidad</div>
+        <p class="card-desc">Google AdMob puede recopilar datos del dispositivo para mostrar anuncios relevantes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">02 · Para qué usamos los datos</div>
+    <h2>Propósito claro y limitado</h2>
+    <ul class="clean">
+      <li><span class="dot"></span>Mantener tu progreso entre sesiones</li>
+      <li><span class="dot"></span>Detectar y corregir errores de la aplicación</li>
+      <li><span class="dot"></span>Mostrar anuncios a través de Google AdMob</li>
+      <li><span class="dot"></span>Mejorar el rendimiento general de la app</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">03 · Con quién compartimos</div>
+    <h2>Solo proveedores de confianza</h2>
+    <p>No vendemos tus datos. Compartimos información únicamente con:</p>
+    <br>
+    <span class="pill">Google Firebase</span>
+    <span class="pill">Google AdMob</span>
+    <br><br>
+    <p>Ambos operan bajo la <a href="https://policies.google.com/privacy" target="_blank">Política de Privacidad de Google</a>.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">04 · Seguridad y cifrado</div>
+    <h2>Transmisión segura</h2>
+    <p>Todos los datos viajan cifrados mediante <span class="pill gold">HTTPS</span> y se almacenan en la infraestructura segura de Google Firebase.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">05 · Edad mínima</div>
+    <h2>Para mayores de 13 años</h2>
+    <p>Axioma Trivia está dirigida a usuarios mayores de 13 años. No recopilamos datos de menores de forma intencional.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">06 · Tus derechos</div>
+    <h2>Eliminación de datos</h2>
+    <p>Puedes solicitar la eliminación de tus datos en cualquier momento. Los datos de usuarios inactivos se eliminan automáticamente en un plazo máximo de <strong style="color:#fff">90 días</strong>.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">07 · Contacto</div>
+    <h2>¿Tienes preguntas?</h2>
+    <div class="contact-row">
+      <div class="contact-info">
+        <div class="contact-name">Fabián Vicencio</div>
+        <div class="contact-email">vicencioislasfabian@gmail.com</div>
+      </div>
+      <div class="tag-updated">Actualizado · Abril 2025</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 <strong>Axioma Trivia</strong> · Santiago, Chile · Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>
